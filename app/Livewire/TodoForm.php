@@ -5,17 +5,16 @@ namespace App\Livewire;
 use App\Models\TodoList;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class TodoForm extends Component
 {
-    use WithPagination;
-
     #[Validate("required|unique:todo_lists,name|max:255")]
     public $name;
 
     public function submit()
     {
+        // sleep(3);
+
         $validated = $this->validate();
 
         TodoList::create($validated);

@@ -10,8 +10,15 @@
                 <span class="block mt-3 text-xs text-red-500 ">{{ $message }}</span>
             @enderror
         </div>
-        <button type="submit" class="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">Create
-            +</button>
+        <button wire:loading.attr="disabled" type="submit"
+            class="px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
+
+            <div wire:loading.delay.remove wire:target='submit'>Create +</div>
+            <div wire:loading.delay wire:target='submit'
+                class="w-5 h-5 border-b-2 border-white rounded-full animate-spin">
+            </div>
+
+        </button>
         @if (Session::has('message'))
             <br>
             <span class="text-xs text-green-500">{{ session('message') }}</span>

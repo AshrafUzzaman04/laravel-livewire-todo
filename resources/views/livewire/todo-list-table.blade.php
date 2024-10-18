@@ -1,8 +1,10 @@
  <div>
      @include('livewire.includes.search-box')
+     <h3 wire:poll.visible.10s>Total Todo {{ $this->countLists }}</h3>
+
      <div id="todos-list">
-         @if ($lists && $lists->count() > 0)
-             @foreach ($lists as $list)
+         @if ($this->todoLists && $this->countLists > 0)
+             @foreach ($this->todoLists as $list)
                  @include('livewire.includes.todo-card')
              @endforeach
          @else
@@ -13,10 +15,9 @@
              </div>
          @endif
 
-
          <div class="my-2">
              <!-- Pagination goes here -->
-             {{ $lists->links() }}
+             {{ $this->todoLists->links() }}
          </div>
      </div>
  </div>
